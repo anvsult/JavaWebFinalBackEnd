@@ -11,8 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
-    @Autowired
     private PostServiceImpl postService;
+
+    @Autowired
+    public PostController(PostServiceImpl postService) {
+        this.postService = postService;
+    }
 
     @GetMapping("/{post_id}")
     public List<PostResponseModel> getPostById(@PathVariable int post_id) {
@@ -33,4 +37,10 @@ public class PostController {
     public String deletePost(@PathVariable int post_id) {
         return this.postService.deletePost(post_id);
     }
+
+    @GetMapping("/users/{user_id}/posts")
+    public List<PostResponseModel> getPostsByUser(@PathVariable int user_id) {
+        return this.postService.getPostsByUser(user_id);
+    }
+
 }
