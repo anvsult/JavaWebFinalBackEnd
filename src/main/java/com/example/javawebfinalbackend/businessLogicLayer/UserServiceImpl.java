@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseModel getUserById(int userId) {
         User user = userRepository.findUserByUserId(userId);
-        return UserResponseMapper.entityToResponseModel(user);
+        return userResponseMapper.entityToResponseModel(user);
     }
 
 }

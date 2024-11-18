@@ -24,6 +24,6 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseModel getPostById(int postId) {
         Post post = postRepository.findPostByPostId(postId);
-        return PostResponseMapper.entityToResponseModel(post);
+        return postReponseMapper.entityToResponseModel(post);
     }
 }
