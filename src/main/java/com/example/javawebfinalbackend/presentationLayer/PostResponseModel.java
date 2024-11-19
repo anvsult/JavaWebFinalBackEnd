@@ -4,15 +4,12 @@ import lombok.*;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class PostResponseModel {
-    private Integer post_id;
-    private Integer user_id;
-    private String post_image_url;
-    private String post_description;
-    private Date created_at;
+    private Integer postId;
+    private Integer userId;
+    private String postImageUrl;
+    private String postDescription;
+    private Date createdAt;
 
 }

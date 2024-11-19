@@ -1,5 +1,6 @@
 package com.example.javawebfinalbackend.presentationLayer;
 
+import com.example.javawebfinalbackend.dataAccessLayer.FriendshipStatus;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,5 +12,6 @@ public class FriendshipResponseModel {
     private String sourceUserName;
     private Integer targetUserId;
     private String targetUserName;
+    private FriendshipStatus status;
     private Date createdAt;
 }

@@ -14,18 +14,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    private String user_name;
+    private String userName;
     private String email;
-    private String password_hash;
-    private Date registered_at;
+    private String passwordHash;
+    private Date registeredAt;
     private Date dob;
-    private String profile_picture_url;
+    private String profilePictureUrl;
     private String bio;
 
-    @OneToMany(mappedBy = "source_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sourceUser", cascade = CascadeType.ALL)
     private List<Friendship> sentFriendRequests;
 
-    @OneToMany(mappedBy = "target_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "targetUser", cascade = CascadeType.ALL)
     private List<Friendship> receivedFriendRequests;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

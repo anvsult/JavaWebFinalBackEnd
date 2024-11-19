@@ -11,15 +11,20 @@ import java.util.Date;
 public class Friendship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer friendship_id;
+    private Integer friendshipId;
 
     @ManyToOne
     @JoinColumn(name = "source_id", nullable = false)
-    private User source_id;
+    private User sourceUser;
 
     @ManyToOne
     @JoinColumn(name = "target_id", nullable = false)
-    private User target_id;
+    private User targetUser;
 
-    private Date created_at;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private FriendshipStatus status;
+
+    private Date createdAt;
+
 }

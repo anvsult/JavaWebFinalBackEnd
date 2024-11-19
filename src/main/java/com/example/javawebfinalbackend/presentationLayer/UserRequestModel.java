@@ -1,22 +1,16 @@
 package com.example.javawebfinalbackend.presentationLayer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class UserRequestModel {
-    private String user_name;
+    private String userName;
     private String email;
-    private String password_hash;
+    private String passwordHash;
     private Date dob;
-    private String profile_picture_url;
+    private String profilePictureUrl;
     private String bio;
 
 }

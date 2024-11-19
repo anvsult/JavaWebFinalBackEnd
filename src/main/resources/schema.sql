@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS friendships
     friendship_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     source_id INTEGER NOT NULL,
     target_id INTEGER NOT NULL,
-    created_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('PENDING', 'ACCEPTED', 'DECLINED') DEFAULT 'PENDING',
     FOREIGN KEY (source_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (target_id) REFERENCES users(user_id) ON DELETE CASCADE,
     UNIQUE (source_id, target_id)

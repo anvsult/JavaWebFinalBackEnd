@@ -1,15 +1,9 @@
 package com.example.javawebfinalbackend.presentationLayer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class FriendshipRequestModel {
-    private int source_id;
-    private int target_id;
+    private int sourceId;
+    private int targetId;
 }

@@ -7,12 +7,14 @@ import com.example.javawebfinalbackend.presentationLayer.UserRequestModel;
 import com.example.javawebfinalbackend.presentationLayer.UserResponseModel;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class UserServiceImpl implements UserService {
 //    Repositories
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 //    Mappers
-    private UserResponseMapper userResponseMapper;
+    private final UserResponseMapper userResponseMapper;
 
     public UserServiceImpl(
             UserRepository userRepository,
@@ -31,9 +33,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public String createUser(UserRequestModel user) {
         User newUser = new User();
-        newUser.setUser_name(user.getUser_name());
+        newUser.setUserName(user.getUserName());
         newUser.setEmail(user.getEmail());
-        newUser.setPassword_hash(user.getPassword_hash());
+
+        newUser.setPasswordHash(user.getPasswordHash());
+        newUser.setRegisteredAt(new Date());
+        newUser.setDob(user.getDob());
+        newUser.setProfilePictureUrl(user.getProfilePictureUrl());
+        newUser.setBio(user.getBio());
+
         userRepository.save(newUser);
         return "User created successfully";
     }
@@ -41,9 +49,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUser(int userId, UserRequestModel user) {
         User userToEdit = userRepository.findUserByUserId(userId);
-        userToEdit.setUser_name(user.getUser_name());
+        userToEdit.setUserName(user.getUserName());
         userToEdit.setEmail(user.getEmail());
-        userToEdit.setPassword_hash(user.getPassword_hash());
+
+        userToEdit.setPasswordHash(user.getPasswordHash());
+        userToEdit.setDob(user.getDob());
+        userToEdit.setProfilePictureUrl(user.getProfilePictureUrl());
+        userToEdit.setBio(user.getBio());
+
         userRepository.save(userToEdit);
         return "User edited successfully";
     }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/posts")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
@@ -20,17 +20,17 @@ public class PostController {
 
     @GetMapping("/{post_id}")
     public PostResponseModel getPostById(@PathVariable int post_id) {
-        return this.postService.getPostById(post_id);
+        return postService.getPostById(post_id);
     }
 
     @PostMapping
     public PostResponseModel createPost(@RequestBody PostRequestModel newPostData) {
-        return this.postService.createPost(newPostData);
+        return postService.createPost(newPostData);
     }
 
     @PutMapping("/{post_id}")
     public String editPost(@PathVariable int post_id, @RequestBody PostRequestModel edit_post) {
-        return this.postService.editPost(post_id, edit_post);
+        return postService.editPost(post_id, edit_post);
     }
 
     @DeleteMapping("/{post_id}")
@@ -38,9 +38,9 @@ public class PostController {
         return this.postService.deletePost(post_id);
     }
 
-    @GetMapping("/users/{user_id}/posts")
+    @GetMapping("/users/{user_id}")
     public List<PostResponseModel> getPostsByUser(@PathVariable int user_id) {
-        return this.postService.getPostsByUserId(user_id);
+        return postService.getPostsByUserId(user_id);
     }
 
 }

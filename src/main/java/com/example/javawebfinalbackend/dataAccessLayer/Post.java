@@ -17,7 +17,7 @@ public class Post {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String post_image_url;
-    private String post_description;
-    private Date created_at;
+    private String postImageUrl;
+    private String postDescription;
+    private Date createdAt;
 }

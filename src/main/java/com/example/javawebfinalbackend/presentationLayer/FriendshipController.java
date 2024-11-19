@@ -17,24 +17,29 @@ public class FriendshipController {
         this.friendshipService = friendshipService;
     }
 
-//    @PostMapping
-//    public List<FriendshipResponseModel> sendFriendRequest(@RequestBody FriendshipRequestModel request) {
-//        return this.friendshipService.sendFriendRequest(request);
-//    }
-//
-//    @PutMapping("/{friendship_id}/accept")
-//    public List<FriendshipResponseModel> acceptFriendRequest(@PathVariable int friendship_id) {
-//        return this.friendshipService.acceptFriendRequest(friendship_id);
-//    }
-//
-//    @DeleteMapping("/{friendship_id}")
-//    public List<Void> deleteFriendRequest(@PathVariable int friendship_id) {
-//        return this.friendshipService.deleteFriendRequest(friendship_id);
-//    }
-//
-//    @PostMapping("/{friendship_id}/block")
-//    public List<Void> blockUser(@PathVariable int friendship_id) {
-//        return this.friendshipService.blockUser(friendship_id);
-//    }
+    @GetMapping("/{user_id}")
+    public List<FriendshipResponseModel> getFriendshipsByUserId(@PathVariable int user_id) {
+        return friendshipService.getFriendshipsByUserId(user_id);
+    }
+
+    @PostMapping("/send")
+    public String sendFriendRequest(@RequestParam int sourceId, @RequestParam int targetId) {
+        return friendshipService.sendFriendRequest(sourceId, targetId);
+    }
+
+    @PostMapping("/accept/{friendship_id}")
+    public String acceptFriendRequest(@PathVariable int friendship_id) {
+        return friendshipService.acceptFriendRequest(friendship_id);
+    }
+
+    @PostMapping("/decline/{friendship_id}")
+    public String declineFriendRequest(@PathVariable int friendship_id) {
+        return friendshipService.declineFriendRequest(friendship_id);
+    }
+
+    @DeleteMapping("/delete/{friendship_id}")
+    public String deleteFriendship(@PathVariable int friendship_id) {
+        return friendshipService.deleteFriendship(friendship_id);
+    }
 
 }
