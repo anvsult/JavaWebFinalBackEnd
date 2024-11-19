@@ -11,7 +11,7 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer post_id;
+    private Integer postId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

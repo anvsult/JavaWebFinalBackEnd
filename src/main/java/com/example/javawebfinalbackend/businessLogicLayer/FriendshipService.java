@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FriendshipService {
     List<FriendshipResponseModel> getFriendshipsByUserId(int userId);
+
 }
