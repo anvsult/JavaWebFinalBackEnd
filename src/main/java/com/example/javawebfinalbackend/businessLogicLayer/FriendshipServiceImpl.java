@@ -105,10 +105,5 @@ public class FriendshipServiceImpl implements FriendshipService{
         friendshipRepository.deleteById(friendshipId);
         return "Friendship deleted successfully";
     }
-
-//    @Override
-//    public List<Friendship> getPendingRequests(int userId) {
-//        return friendshipRepository.findPendingRequests(userId);
-//    }
 }
 
