@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PostResponseMapper {
     @Mapping(target = "userId", source = "user.userId")
+    @Mapping(target = "userName", source = "user.userName")
+    @Mapping(target = "userImageUrl", source = "user.profilePictureUrl")
     PostResponseModel entityToResponseModel(Post post);
     List<PostResponseModel> entityListToResponseModelList(List<Post> posts);
 }
