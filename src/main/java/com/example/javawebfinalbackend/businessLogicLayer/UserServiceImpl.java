@@ -3,8 +3,10 @@ package com.example.javawebfinalbackend.businessLogicLayer;
 import com.example.javawebfinalbackend.dataAccessLayer.User;
 import com.example.javawebfinalbackend.dataAccessLayer.UserRepository;
 import com.example.javawebfinalbackend.dataMapperLayer.UserResponseMapper;
+import com.example.javawebfinalbackend.dataMapperLayer.UserWithFriendshipsResponseMapper;
 import com.example.javawebfinalbackend.presentationLayer.UserRequestModel;
 import com.example.javawebfinalbackend.presentationLayer.UserResponseModel;
+import com.example.javawebfinalbackend.presentationLayer.UserWithFriendshipsResponseModel;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,13 +17,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 //    Mappers
     private final UserResponseMapper userResponseMapper;
+    private final UserWithFriendshipsResponseMapper userWithFriendshipsResponseMapper;
 
     public UserServiceImpl(
             UserRepository userRepository,
-            UserResponseMapper userResponseMapper
-    ) {
+            UserResponseMapper userResponseMapper,
+            UserWithFriendshipsResponseMapper userWithFriendshipsResponseMapper) {
         this.userRepository = userRepository;
         this.userResponseMapper = userResponseMapper;
+        this.userWithFriendshipsResponseMapper = userWithFriendshipsResponseMapper;
     }
 
     @Override
@@ -66,6 +70,12 @@ public class UserServiceImpl implements UserService {
         User userToDelete = userRepository.findUserByUserId(userId);
         userRepository.delete(userToDelete);
         return "User deleted successfully";
+    }
+
+    @Override
+    public UserWithFriendshipsResponseModel getUserWithFriendshipsById(int userId) {
+        User user = userRepository.findUserByUserId(userId);
+        return userWithFriendshipsResponseMapper.entityListToResponseModelList(user);
     }
 
 }

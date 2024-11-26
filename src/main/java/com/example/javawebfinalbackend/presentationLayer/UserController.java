@@ -36,4 +36,9 @@ public class UserController {
     public String deleteUser(@PathVariable int user_id) {
         return this.userService.deleteUser(user_id);
     }
+
+    @GetMapping("/{user_id}/friendships")
+    public UserWithFriendshipsResponseModel getUserWithFriendships(@PathVariable int user_id) {
+        return this.userService.getUserWithFriendshipsById(user_id);
+    }
 }
