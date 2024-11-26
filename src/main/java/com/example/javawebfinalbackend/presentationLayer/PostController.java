@@ -18,6 +18,10 @@ public class PostController {
         this.postService = postService;
     }
 
+//    @GetMapping()
+//    public PostResponseModel getPosts() {
+//        return postService.getPosts();
+//    }
     @GetMapping("/{post_id}")
     public PostResponseModel getPostById(@PathVariable int post_id) {
         return postService.getPostById(post_id);
