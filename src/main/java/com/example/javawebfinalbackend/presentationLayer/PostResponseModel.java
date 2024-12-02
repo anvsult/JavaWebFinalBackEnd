@@ -6,8 +6,10 @@ import java.util.Date;
 
 @Data
 public class PostResponseModel {
-    private Integer postId;
     private Integer userId;
+    private Integer postId;
+    private String userName;
+    private String userImageUrl;
     private String postImageUrl;
     private String postDescription;
     private Date createdAt;

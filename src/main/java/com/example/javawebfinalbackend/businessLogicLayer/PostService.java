@@ -11,4 +11,5 @@ public interface PostService {
     String editPost(int postId, PostRequestModel post);
     String deletePost(int postId);
     List<PostResponseModel> getPostsByUserId(int userId);
+    List<PostResponseModel> getPosts();
 }
