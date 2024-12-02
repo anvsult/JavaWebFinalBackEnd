@@ -5,7 +5,9 @@ import com.example.javawebfinalbackend.dataAccessLayer.UserRepository;
 import com.example.javawebfinalbackend.dataMapperLayer.UserResponseMapper;
 import com.example.javawebfinalbackend.presentationLayer.UserRequestModel;
 import com.example.javawebfinalbackend.presentationLayer.UserResponseModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseModel getUserById(int userId) {
         User user = userRepository.findUserByUserId(userId);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found");
+        }
         return userResponseMapper.entityToResponseModel(user);
     }
 
@@ -49,6 +54,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUser(int userId, UserRequestModel user) {
         User userToEdit = userRepository.findUserByUserId(userId);
+        if (userToEdit == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found");
+        }
         userToEdit.setUserName(user.getUserName());
         userToEdit.setEmail(user.getEmail());
 
@@ -64,6 +72,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public String deleteUser(int userId) {
         User userToDelete = userRepository.findUserByUserId(userId);
+        if (userToDelete == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found");
+        }
         userRepository.delete(userToDelete);
         return "User deleted successfully";
     }

@@ -7,7 +7,9 @@ import com.example.javawebfinalbackend.dataAccessLayer.UserRepository;
 import com.example.javawebfinalbackend.presentationLayer.PostRequestModel;
 import com.example.javawebfinalbackend.presentationLayer.PostResponseModel;
 import com.example.javawebfinalbackend.dataMapperLayer.PostResponseMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.List;
@@ -33,6 +35,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseModel getPostById(int postId) {
         Post post = postRepository.findPostByPostId(postId);
+        if (post == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with ID " + postId + " not found");
+        }
         return postResponseMapper.entityToResponseModel(post);
     }
 
@@ -52,6 +57,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public String editPost(int postId, PostRequestModel post) {
         Post postToEdit = postRepository.findPostByPostId(postId);
+        if (postToEdit == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with ID " + postId + " not found");
+        }
 
         postToEdit.setPostImageUrl(post.getPostImageUrl());
         postToEdit.setPostDescription(post.getPostDescription());
@@ -63,6 +71,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public String deletePost(int postId) {
         Post postToDelete = postRepository.findPostByPostId(postId);
+        if (postToDelete == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with ID " + postId + " not found");
+        }
         postRepository.delete(postToDelete);
         return "Post deleted successfully";
     }
@@ -70,6 +81,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostResponseModel> getPostsByUserId(int userId) {
         User user = userRepository.findUserByUserId(userId);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with ID " + userId + " not found");
+        }
         List<Post> posts = postRepository.findPostsByUser(user);
         return postResponseMapper.entityListToResponseModelList(posts);
     }

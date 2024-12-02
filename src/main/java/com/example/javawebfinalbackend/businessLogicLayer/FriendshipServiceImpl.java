@@ -32,6 +32,7 @@ public class FriendshipServiceImpl implements FriendshipService{
     @Override
     public List<FriendshipResponseModel> getFriendshipsByUserId(int userId) {
         List<Friendship> friendships = friendshipRepository.findFriendshipsByUserId(userId);
+
         return friendshipResponseMapper.entityListToResponseModelList(friendships);
     }
 
