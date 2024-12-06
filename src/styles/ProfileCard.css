@@ -1,0 +1,19 @@
+.card-header {
+    font-size: 2.5rem;
+}
+
+.profile-picture {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.card {
+    min-width: 400px;
+    max-width: 500px;
+}
+
+.card-body {
+    text-align: center;
+    padding: 15px;
+}
